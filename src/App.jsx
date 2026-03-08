@@ -215,8 +215,14 @@ function CustomerApp() {
     return `https://wa.me/${RESTAURANT_WHATSAPP_NUMBER}?text=${msg}`;
   };
 
-  if (loading) return <div className="min-h-screen flex items-center justify-center bg-gray-50"><Utensils className="animate-spin text-orange-500" /></div>;
-
+if (loading) return (
+    <div className="fixed inset-0 h-screen w-screen flex flex-col items-center justify-center bg-gray-50 z-[200]">
+      <div className="p-6 bg-white rounded-full shadow-lg border border-orange-100 mb-4">
+        <Utensils className="animate-spin text-orange-500" size={56} />
+      </div>
+      <p className="text-orange-600 font-bold animate-pulse tracking-widest uppercase text-sm">Preparing Kitchen...</p>
+    </div>
+  );
   const groupedMenu = staticMenu.reduce((acc, item) => {
     if (!acc[item.category]) acc[item.category] = [];
     acc[item.category].push(item); return acc;
